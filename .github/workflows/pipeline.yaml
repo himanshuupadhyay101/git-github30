@@ -16,10 +16,19 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9
+          python-version: 3.x
 
       - name: Install dependencies
         run: pip install Flask
 
       - name: Run Flask app
-        run: python app.py > log.txt 2>&1 &
+        run: |
+          python app.py > output.txt &  # Redirect output to a file
+          sleep 20  # Run the app for 20 seconds
+        timeout-minutes: 1  # Adjust timeout duration as needed
+
+      - name: Upload output.txt as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: flask-app-output
+          path: output.txt
