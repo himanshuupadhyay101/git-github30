@@ -22,4 +22,4 @@ jobs:
         run: pip install Flask
 
       - name: Run Flask app
-        run: python app.py
+        run: python app.py > log.txt 2>&1 &
