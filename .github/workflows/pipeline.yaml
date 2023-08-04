@@ -23,7 +23,7 @@ jobs:
 
       - name: Run Flask app
         run: |
-          python app.py > output.txt 2>&1  # Redirect output to a file
+          python app.py > output.txt &  # Redirect output to a file
           sleep 20  # Run the app for 20 seconds
         timeout-minutes: 1  # Adjust timeout duration as needed
 
